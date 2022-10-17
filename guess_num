@@ -1,0 +1,69 @@
+import random
+
+
+def is_valid_12(text):
+    if text.isdigit() is True and 1 <= int(text) <= 2:
+        return True
+    else:
+        return False
+
+
+def is_valid(text):
+    if text.isdigit() is True and 1 <= int(text) <= n:
+        return True
+    else:
+        return False
+
+
+def guess_loop():
+    counter = 0
+    while True:
+        num_try = input(f"Пожалуйста, введите целое число от 1 до {n}: ")
+        if is_valid(num_try):
+            num_try = int(num_try)
+            counter += 1
+            if num_try < number:
+                print("Ваше число меньше загаданного, попробуйте еще разок")
+            elif num_try > number:
+                print("Ваше число больше загаданного, попробуйте еще разок")
+            else:
+                print(f"Вы угадали, поздравляю!! Количество попыток: {counter}.")
+                break
+        else:
+            print("Ошибка ввода, будьте внимательны! ")
+            continue
+
+
+def yes_or_no(text1):
+    while True:
+        if text1 == 'да' or text1 == 'нет':
+            return True
+        else:
+            global one_more_try
+            one_more_try = input('Введите "да" или "нет": ')
+            text1 = one_more_try
+            continue
+
+
+while True:
+    print("Добро пожаловать в числовую угадайку!")
+    print("Введите 1, если хотите сыграть в классическую угадайку"
+          " или 2 если хотите указать граничное значение сами: ")
+    choice = input()
+    if is_valid_12(choice):
+        choice = int(choice)
+        if choice == 1:
+            n = 100
+        else:
+            n = int(input("Введите значение правой границы: "))
+    else:
+        continue
+    number = random.randint(1, n)
+    guess_loop()
+    one_more_try = input('Хотите сыграть ещё раз? Введите "да" или "нет": ').lower()
+    if yes_or_no(one_more_try):
+        if one_more_try == 'да':
+            continue
+        else:
+            print("Спасибо, что играли в числовую угадайку! Желаю удачи и успехов...")
+            break
